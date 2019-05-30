@@ -1,0 +1,14 @@
+npx create-react-app react-todo
+
+npm install --save @material-ui/core
+npm install --save @material-ui/icons
+
+npm i --save react-redux
+npm i --save redux
+
+
+
+// SUPER IMPORTANTES PARA ARRAYS //
+-map
+-filter
+-reviews
