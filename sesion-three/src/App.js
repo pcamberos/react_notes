@@ -13,7 +13,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Icon from '@material-ui/core/Icon';
 
 // React Router Dom
-import {Link, Route} from "react-router-dom";
+import {Link, Route, Redirect} from "react-router-dom";
 
 class App extends React.Component {
 
@@ -22,9 +22,8 @@ class App extends React.Component {
     this.state = {
       title: "",
       description: "",
-      notes: []
+      notes: [],
     }; 
-    //console.log(this.state)
   }
 
   updateTitle = e =>{
@@ -46,7 +45,7 @@ class App extends React.Component {
       description: ""
     });
   }
-
+ 
 
   addNote = () =>{
     const notes = this.state.notes;
@@ -64,9 +63,6 @@ class App extends React.Component {
   };
 
   deleteNote = (index) => {
-    //const notes_full = this.state.notes;
-    //const notes = notes_full.filter((note, id_note) => id_note !== id);
-    
     const notes = this.state.notes;
     notes.splice(index,1);
     this.setState({
@@ -74,6 +70,25 @@ class App extends React.Component {
     });
   }
 
+  verifyExistingNote(aidi){
+    let exists = false;
+    const notes = this.state.notes;
+    exists = notes.filter(note => {
+      if (note.id === aidi){
+        return true;
+      }
+        return exists;
+    });
+  }
+
+  filterNote = id => {
+    const notes = this.state.notes;
+    const note = notes.filter(note=>{
+      return note.id = parseInt(id);
+    });
+    return note[0];
+  }
+  
   render(){
     return (
       <React.Fragment>
@@ -109,9 +124,15 @@ class App extends React.Component {
                     />
                 )}
               />
-              <Route 
+              
+              <Route  
                   path="/view/:id" 
-                  render = {props => <Note {...props} notes={this.state.notes} /> }
+
+                  render = { props =>{
+                    const note = this.filterNote(props.match.params.id);
+                     return note? 
+                    <Note  note={note} /> : 
+                    <Redirect to={'/'}/>; }}
                 />
              
             <Grid>

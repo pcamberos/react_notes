@@ -1,13 +1,12 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 const Note = (props) => {
-    const {notes} = props;
+    const {note} = props;
 
-    const note = notes.filter(note => {
+    /*const note = notes.filter(note => {
         return note.id === parseInt(props.match.params.id) ;
-    });
-
-
+    });*/
+    
     return(
         <React.Fragment>
             <Typography
@@ -15,12 +14,12 @@ const Note = (props) => {
                 variant="h4"
                 gutterBottom
                 >
-                {note[0].title}
-            </Typography>
+                {note.title}
+            </Typography> 
             <Typography
                 variant="subtitle1"
                 >
-                {note[0].description}
+                {note.description}
             </Typography>
         </React.Fragment>
        
