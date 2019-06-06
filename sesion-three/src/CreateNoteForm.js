@@ -4,8 +4,9 @@ import Button from '@material-ui/core/Button';
 
 const CreateNoteForm = (props) => {
     let {title, description, updateTitle,updateDescription,addNote} = props;
+
     return(
-        <div >
+        <React.Fragment>
             <div>
                 <TextField 
                     type="text" 
@@ -36,9 +37,7 @@ const CreateNoteForm = (props) => {
                         Guardar Nota
                 </Button>
             </div>
-             
-
-        </div>
+        </React.Fragment>
         
     )
 };
